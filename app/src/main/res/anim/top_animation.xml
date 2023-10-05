@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- deplacement -->
+    <!-- il indique que l'élément va se déplacer de sa position actuelle
+    (0% de déplacement horizontal et -100% de déplacement vertical, ce qui signifie vers le haut)
+    vers sa position finale. La durée de cette animation est de 1500 millisecondes (1,5 seconde).-->
+    <translate
+        android:fromXDelta="0%"
+        android:fromYDelta="-50%"
+        android:duration="2000"
+    />
+    <!-- transparence -->
+    <!-- il indique que l'élément passe d'une transparence de 0.1 (presque complètement transparent)
+    à une transparence de 1.0 (complètement opaque). La durée de cette animation est également de 1500 millisecondes (1,5 seconde).-->
+    <alpha
+        android:fromAlpha="0.1"
+        android:toAlpha="1.0"
+        android:duration="1500"
+        />
+</set>
