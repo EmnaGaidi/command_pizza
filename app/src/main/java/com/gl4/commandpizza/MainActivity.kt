@@ -8,10 +8,12 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.telephony.SmsManager
+import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.material.textfield.TextInputLayout
@@ -45,10 +47,6 @@ class MainActivity : AppCompatActivity() {
         sms_button = findViewById(R.id.sms_button)
         email_button = findViewById(R.id.email_button)
 
-        val nomText = nom.editText
-        val prenomText = prenom.editText
-        val adresseText = adresse.editText
-
 
         if (fromage.isChecked){
             ingredients = ingredients +" fromage /"
@@ -63,6 +61,9 @@ class MainActivity : AppCompatActivity() {
             // checkedId contient l'ID du RadioButton sélectionné
             val selectedRadioButton: RadioButton = findViewById(checkedId)
             size = selectedRadioButton.text.toString()
+            val nomText = nom.editText?.text.toString()
+            val prenomText = prenom.editText?.text.toString()
+            val adresseText = adresse.editText?.text.toString()
             finalText = "Monsieur/Madame "+nomText+" "+prenomText+" habite à "+adresseText+" à commander Pizza "+size+" "+ingredients
 
         }
@@ -82,6 +83,7 @@ class MainActivity : AppCompatActivity() {
         sms_button.setOnClickListener{
             var phone = "00000"
             SendSMS(phone,finalText)
+            showToast("SMS envoyé :"+finalText)
 
         }
         email_button.setOnClickListener {
@@ -99,6 +101,9 @@ class MainActivity : AppCompatActivity() {
     fun SendSMS(number: String,message:String) {
         val smsManager = SmsManager.getDefault()
         smsManager.sendTextMessage(number, null, message, null, null)
+    }
+    private fun showToast(message:String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
 }
